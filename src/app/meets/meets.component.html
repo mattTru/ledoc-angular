@@ -1,0 +1,12 @@
+<h1>Tous les rendez-vous d'aujourd'hui</h1>
+<div ngClass="meets">
+    <ul>
+      <li *ngFor="let meet of meets">
+        <p ngClass="meets__time">{{ meet.date | date:'h:ss'}}</p>
+        <div>
+          <p><span ngClass="lastname-patient">{{ meet.patient.lastName }}</span>&nbsp;{{ meet.patient.firstName }}</p>
+          <p>{{ meet.subject }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>

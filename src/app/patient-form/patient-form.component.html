@@ -1,0 +1,192 @@
+<h1>Formulaire patient</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <button *ngIf="isEditMode" mat-button ngClass="delete-button" (click)="delete()">Supprimer</button>
+    <button *ngIf="!isEditMode" ngClass="create-button" mat-raised-button>Créer</button>
+    <button *ngIf="isEditMode" ngClass="edit-button" mat-raised-button>Modifier</button>
+
+    <!-- Informations -->
+    <div ngClass="informations">
+        <h2>Informations</h2>
+
+        <div ngClass="form-row">
+          <div ngClass="form-field">
+            <label for="lastName">Nom</label>
+            <input type="text" formControlName="lastName" id="lastName">
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('lastName').hasError('required')">
+                Le nom est obligatoire.
+              </span>
+              <span ngClass="error-message" *ngIf="form.get('lastName').hasError('minlength')">
+                Le nom doit comporter plus de 2 caractères.
+              </span>
+            </p>
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="firstName">Prénom</label>
+            <input type="text" formControlName="firstName" id="firstName">
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('firstName').hasError('required')">
+                Le prénom est obligatoire.
+              </span>
+              <span ngClass="error-message" *ngIf="form.get('firstName').hasError('minlength')">
+                Le prénom doit comporter plus de 2 caractères.
+              </span>
+            </p>
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="socialNumber">N° Sécurité sociale</label>
+            <input type="text" formControlName="socialNumber" id="socialNumber">
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('socialNumber').hasError('required')">
+                Le N° de sécurité sociale est obligatoire.
+              </span>
+            </p>
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="bloodGroup">Groupe sanguin</label>
+            <select name="bloodGroup" formControlName="bloodGroup" id="bloodGroup">
+              <option *ngFor="let listBloodGroup of listBloodGroups" value="{{ listBloodGroup.id }}">{{ listBloodGroup.label }}</option>
+            </select>
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('bloodGroup').hasError('required')">
+                Le groupe sanguin est obligatoire.
+              </span>
+            </p>
+            <!-- <input type="number" formControlName="bloodGroup" id="bloodGroup"> -->
+          </div>
+        </div>
+
+        <div ngClass="form-row">
+          <div ngClass="form-field">
+            <label for="height">Taille (cm)</label>
+            <input type="text" formControlName="height" id="height">
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('height').hasError('required')">
+                La taille est obligatoire.
+              </span>
+            </p>
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="weight">Poids (kg)</label>
+            <input type="number" formControlName="weight" id="weight">
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('weight').hasError('required')">
+                Le poids est obligatoire.
+              </span>
+            </p>
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="allergies">Allergies</label>
+            <input type="text" formControlName="allergies" id="allergies">
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="gender">Genre</label>
+            <select name="type" formControlName="gender" id="gender">
+              <option value="Homme">Homme</option>
+              <option value="Femme">Femme</option>
+              <option value="Autre">Autre</option>
+            </select>
+            <p *ngIf="form.dirty || form.touched">
+              <span ngClass="error-message" *ngIf="form.get('gender').hasError('required')">
+                Le genre est obligatoire.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div ngClass="form-row">
+          <div ngClass="form-field">
+            <label for="lastIncome">Dernière visite</label>
+            <input type="date" formControlName="lastIncome" id="lastIncome">
+          </div>
+          
+          <div ngClass="form-field">
+            <label for="lastSubject">Motif</label>
+            <input type="text" formControlName="lastSubject" id="lastSubject">
+          </div>
+        </div>
+    </div>
+
+    <!-- Notes -->
+    <div ngClass="notes">
+      <h2>Notes</h2>
+      <textarea ngClass="notes-textarea" name="notes" formControlName="notes" id="notes"></textarea>
+    </div>
+
+    <!-- Traitements -->
+    <div ngClass="treatments">
+      <h2>Traitements</h2>
+      <div formArrayName="treatments">
+        <div [formGroupName]="i" *ngFor="let treatment of treatments.controls; let i = index">
+          <div ngClass="form-field">
+            <label>Médicament</label>
+            <select name="drug" formControlName="drug" id="drug">
+              <option *ngFor="let listDrug of listDrugs" value="{{ listDrug.id }}">{{ listDrug.label }}</option>
+            </select>
+            <!-- <input type="number" formControlName="drug"> -->
+          </div>
+
+          <div ngClass="form-field">
+            <label>Répéter</label>
+            <select name="repeat" formControlName="repeat" id="repeat">
+              <option *ngFor="let listRepeat of listRepeats" value="{{ listRepeat.id }}">{{ listRepeat.label }}</option>
+            </select>
+            <!-- <input type="number" formControlName="repeat"> -->
+          </div>
+
+          <div ngClass="form-field">
+            <label>Durée</label>
+            <select name="duration" formControlName="duration" id="duration">
+              <option *ngFor="let listPeriod of listPeriods" value="{{ listPeriod.id }}">{{ listPeriod.label }}</option>
+            </select>
+            <!-- <input type="number" formControlName="duration"> -->
+          </div>
+
+          <button mat-icon-button (click)="removeTreatment(i)">
+              <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button mat-raised-button type="button" (click)="addTreatment()" ngClass="add-treatments">Ajouter un traitement</button>
+    </div>
+
+    <!-- Documents -->
+    <div ngClass="documents">
+      <h2>Documents</h2>
+      <div formArrayName="documents">
+        <div [formGroupName]="i" *ngFor="let document of documents.controls; let i = index">
+          <div ngClass="form-field">
+              <mat-label>Nom</mat-label>
+              <input matInput type="string" formControlName="name">
+          </div>
+
+          <div ngClass="form-field">
+              <mat-label>Extension</mat-label>
+              <!-- <input matInput type="string" formControlName="extension"> -->
+              <select name="extension" formControlName="extension" id="extension">
+                <option value="pdf">PDF</option>
+                <option value="jpeg-jpg">JPEG/JPG</option>
+                <option value="png">PNG</option>
+              </select>
+          </div>
+
+          <div ngClass="form-field">
+              <mat-label for="date">Date de mise en ligne</mat-label>
+              <input type="date" formControlName="uploadAt" name="date" id="date">
+          </div>
+
+          <button mat-icon-button (click)="removeDocument(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button mat-raised-button type="button" (click)="addDocument()" ngClass="add-documents">Ajouter un document</button>
+    </div>
+</form>

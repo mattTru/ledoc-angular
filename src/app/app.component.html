@@ -1,0 +1,49 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened *ngIf="tokenStorageService.isAuthenticate()">
+      <header>
+        <img src="../assets/img/ledoc-logo.svg"/>
+        <h2>{{ title }}</h2>
+        <nav>
+            <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <a routerLink="/dashboard" routerLinkActive="router-link-active">
+                        <div ngClass="menu__item">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">dvr</mat-icon>
+                            <p>Dashboard</p>
+                        </div>
+                    </a>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <a routerLink="/patients" routerLinkActive="router-link-active">
+                        <div ngClass="menu__item">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">people</mat-icon>
+                            <p>Patients</p>
+                        </div>
+                    </a>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <a routerLink="/visites" routerLinkActive="router-link-active">
+                        <div ngClass="menu__item">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">drive_eta</mat-icon>
+                            <p>Visites</p>
+                        </div>
+                    </a>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <button (click)="logout()">
+                        <div ngClass="menu__item">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+                            <p>Compte</p>
+                        </div>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+        </nav>
+      </header>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    <footer></footer>
+</mat-sidenav-container>
+  

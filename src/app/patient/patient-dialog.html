@@ -1,0 +1,44 @@
+<h1 ngClass="modal__title" mat-dialog-title>Ajouter un traitement</h1>
+<div mat-dialog-content>
+    <form ngClass="form-treatment" [formGroup]="form" (ngSubmit)="onSubmit( data.id )">
+        <div ngClass="form-field">
+            <label>Médicament *</label>
+            <select name="drug" formControlName="drug" id="drug">
+                <option *ngFor="let listDrug of listDrugs" value="{{ listDrug.id }}">{{ listDrug.label }}</option>
+            </select>
+            <p *ngIf="form.dirty || form.touched">
+                <span ngClass="error-message" *ngIf="form.get('drug').hasError('required')">
+                  Le médicament est obligatoire.
+                </span>
+            </p>
+            <!-- <input type="number" formControlName="drug"> -->
+        </div>
+
+        <div ngClass="form-field">
+            <label>Répéter *</label>
+            <select name="repeat" formControlName="repeat" id="repeat">
+                <option *ngFor="let listRepeat of listRepeats" value="{{ listRepeat.id }}">{{ listRepeat.label }}</option>
+            </select>
+            <p *ngIf="form.dirty || form.touched">
+                <span ngClass="error-message" *ngIf="form.get('repeat').hasError('required')">
+                  La répétition est obligatoire.
+                </span>
+            </p>
+            <!-- <input type="number" formControlName="repeat"> -->
+        </div>
+
+        <div ngClass="form-field">
+            <label>Durée *</label>
+            <select name="duration" formControlName="duration" id="duration">
+                <option *ngFor="let listPeriod of listPeriods" value="{{ listPeriod.id }}">{{ listPeriod.label }}</option>
+            </select>
+            <p *ngIf="form.dirty || form.touched">
+                <span ngClass="error-message" *ngIf="form.get('duration').hasError('required')">
+                  La durée est obligatoire.
+                </span>
+            </p>
+            <!-- <input type="number" formControlName="duration"> -->
+        </div>
+        <button mat-raised-button type="submit" ngClass="button-add-treatment">Ajouter</button>
+    </form>
+</div>

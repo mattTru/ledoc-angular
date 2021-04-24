@@ -1,0 +1,37 @@
+<h1>Patients</h1>
+<a ngClass="adding-patient" routerLink="nouveau" routerLinkActive="router-link-active">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+</a>
+
+<input id="filter" ngClass="filter" (keyup)="applyFilter($event)" placeholder="Recherche...">
+
+<table mat-table [dataSource]="patients" class="mat-elevation-z8">
+    <!-- LastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td ngClass="text-uppercase" mat-cell *matCellDef="let patient">{{patient.lastName}}</td>
+    </ng-container>
+  
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>Prénom</th>
+      <td ngClass="text-capitalize" mat-cell *matCellDef="let patient">{{patient.firstName}}</td>
+    </ng-container>
+  
+    <!-- LastIncome Column -->
+    <ng-container matColumnDef="lastIncome">
+      <th mat-header-cell *matHeaderCellDef>Dernière visite</th>
+      <td mat-cell *matCellDef="let patient">{{patient.lastIncome | date:'dd/MM/Y' }}</td>
+    </ng-container>
+  
+    <!-- LastSubject Column -->
+    <ng-container matColumnDef="lastSubject">
+      <th mat-header-cell *matHeaderCellDef>Motif</th>
+      <td ngClass="text-capitalize" mat-cell *matCellDef="let patient">{{patient.lastSubject}}</td>
+    </ng-container>
+  
+    <tr ngClass="thead-tr" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr ngClass="tbody-tr" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showPatient(row['id'])"></tr>
+</table>
+  
+  

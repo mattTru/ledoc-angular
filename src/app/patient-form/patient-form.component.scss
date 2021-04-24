@@ -1,0 +1,175 @@
+// ===== TITLE =====
+h1 {
+    margin: 50px 0 10px 5%;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+}
+
+// ===== TITLE SECTION =====
+h2 {
+    margin: 10px 0px 20px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+}
+
+// ===== FORM =====
+form {
+    margin-left: 5%;
+    margin-bottom: 50px;
+}
+
+.form-row {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.form-field {
+    display: inline-block;
+    width: 20%;
+    min-height: 50px;
+    margin-right: 20px;
+
+    label {
+        display: flex;
+        width: 100%;
+    }
+
+    input, select {
+        background: #FFFFFF;
+        border: 1px solid #DADADA;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 100%;
+        height: 30px;
+    }
+
+    .error-message {
+        color: red;
+        text-transform: inherit;
+    }
+}
+
+// ====== BUTTON DELETE PATIENT =====
+.delete-button {
+    position: absolute;
+    width: 102px;
+    height: 33px;
+    right: calc(11% + 102px);
+    top: 68px;
+    background: rgba(215, 64, 0, 0.56);
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+// ====== BUTTON CREATE & EDIT PATIENT =====
+.create-button, .edit-button {
+    position: absolute;
+    width: 102px;
+    height: 33px;
+    right: 10%;
+    top: 68px;
+    background: #00E676;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+// ===== INFORMATIONS =====
+.informations {
+    width: 90%;
+    min-height: 257px;
+    margin-top: 50px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 20px 50px 20px;
+}
+
+// ===== NOTES =====
+.notes {
+    width: 90%;
+    min-height: 257px;
+    margin-top: 25px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 20px;
+    padding-right: 30px;
+}
+
+.notes-textarea {
+    width: 100%;
+    height: 176px;
+    background: rgba(229, 229, 229, 0.5);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+// ===== TREATMENTS =====
+.treatments {
+    width: 90%;
+    min-height: 255px;
+    margin-top: 25px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 20px;
+}
+
+// ===== DOCUMENTS =====
+.documents {
+    width: 90%;
+    min-height: 255px;
+    margin-top: 25px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 0 20px;
+}
+
+// ===== BUTTON ADD TREATMENTS & DOCUMENTS
+.add-treatments, .add-documents {
+    display:flex;
+    width: 324px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    background: #59E1F7;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 50px auto;
+}

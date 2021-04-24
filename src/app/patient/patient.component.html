@@ -1,0 +1,53 @@
+<h1><span>{{ patient?.lastName }}</span>&nbsp;{{ patient?.firstName }}</h1>
+
+<a ngClass="modifier-button" [routerLink]="['../', patient?.id, 'edit']" routerLinkActive="router-link-active">Modifier</a>
+<a ngClass="appeler-button" href="tel:0123456789" routerLinkActive="router-link-active">Appeler</a>
+<button mat-button ngClass="archiver-button" (click)="delete()">Archiver</button>
+
+<section ngClass="informations-notes">
+    <div ngClass="informations">
+        <h2>Informations</h2>
+        <p><span ngClass="informations__title">Genre:</span> {{ patient?.gender }}</p>
+        <p><span ngClass="informations__title">Taille:</span> {{ patient?.height }}cm</p>
+        <p><span ngClass="informations__title">Poids:</span> {{ patient?.weight }}kg</p>
+        <p *ngIf="patient?.allergies != ''"><span ngClass="informations__title">Allergies:</span> {{ patient?.allergies }}</p>
+        <div *ngFor="let listBloodGroup of listBloodGroups">
+            <p *ngIf="listBloodGroup.id === patient.bloodGroup"><span ngClass="informations__title">Groupe sanguin:</span> {{ listBloodGroup.label }}</p>
+        </div>
+        <p><span ngClass="informations__title">N°Sécu:</span> {{ patient?.socialNumber }}</p>
+    </div>
+    <div ngClass="notes">
+        <h2>Notes</h2>
+        <div ngClass="notes-text">
+            <p>{{ patient?.notes }}</p>
+        </div>
+    </div>
+</section>
+
+<section ngClass="documents">
+    <h2>Documents</h2>
+    <div *ngFor="let document of patient?.documents">
+        <a ngClass="documents__item" href="../../assets/documents/{{ document.name }}" target="_blank">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">file_present</mat-icon>
+            <span ngClass="documents__name">{{ document.name }}</span>
+            <span ngClass="documents__extension">{{ document.extension }}</span>
+            <span ngClass="documents__uploadat">{{ document.uploadAt | date:'dd/MM/Y' }}</span>
+        </a>
+    </div>
+</section>
+
+<section ngClass="treatments">
+    <h2>Traitements</h2>
+    <div ngClass="treatments__item" *ngFor="let treatment of patient?.treatments">
+        <div *ngFor="let listDrug of listDrugs">
+            <p *ngIf="listDrug.id === treatment.drug"><span>Médicaments : {{ listDrug.label }} /&nbsp;</span></p>
+        </div>
+        <div *ngFor="let listRepeat of listRepeats">
+            <p *ngIf="listRepeat.id === treatment.repeat"><span>Répétition : {{ listRepeat.label }} /&nbsp;</span></p>
+        </div>
+        <div *ngFor="let listPeriod of listPeriods">
+            <p *ngIf="listPeriod.id === treatment.duration"><span>Durée : {{ listPeriod.label }}</span></p>
+        </div>
+    </div>
+    <button ngClass="add-treatments" mat-raised-button  (click)="openDialogAddTreatment()">Ajouter un traitement</button>
+</section>

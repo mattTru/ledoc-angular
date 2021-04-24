@@ -1,0 +1,94 @@
+<h1>Dashboard</h1>
+<a ngClass="adding-patient" routerLink="/patients/nouveau" routerLinkActive="router-link-active">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+</a>
+
+<section ngClass="meets-stats">
+  <div ngClass="meets">
+    <h2>{{ meets.length }}</h2>
+    <h3>Rendez-vous aujourd'hui</h3>
+    <a ngClass="voir-patients" routerLink="/meets" routerLinkActive="router-link-active">Voir tout&nbsp;&nbsp;&nbsp;></a>
+    <ul>
+      <li *ngFor="let meet of meets">
+        <p ngClass="meets__time">{{ meet.date | date:'h:ss'}}</p>
+        <div>
+          <p><span ngClass="lastname-patient">{{ meet.patient.lastName }}</span>&nbsp;{{ meet.patient.firstName }}</p>
+          <p>{{ meet.subject }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div ngClass="stats">
+    <h2>Statistiques</h2>
+    <div ngClass="button-stats">
+      <button id="stats-day" ngClass="button-stats__item" (click)="getStats('day')">1j</button>
+      <button id="stats-week" ngClass="button-stats__item" (click)="getStats('week')">7j</button>
+      <button id="stats-month" ngClass="button-stats__item" (click)="getStats('month')">30j</button>
+    </div>
+    
+    <section ngClass="stats__list">
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">event</mat-icon>
+            <p>{{ stats?.meeting }}</p>
+            <p>rendez-vous</p>
+          </div>
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">add_box</mat-icon>
+            <p>{{ stats?.emergencies }}</p>
+            <p>urgences</p>
+          </div>
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">duo</mat-icon>
+            <p>{{ stats?.videoMeeting }}</p>
+            <p>consultations vidéo</p>
+          </div>
+    </section>
+    <section ngClass="stats__list stats__list-second">
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">group</mat-icon>
+            <p>{{ stats?.availablesAssits }}</p>
+            <p>assistants disponibles</p>
+          </div>
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">description</mat-icon>
+            <p>{{ stats?.orders }}</p>
+            <p>ordonnances</p>
+          </div>
+          <div ngClass="stats__items">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">phone_missed</mat-icon>
+            <p>{{ stats?.missingCalls }}</p>
+            <p>appels manqués</p>
+          </div>
+    </section>
+  </div>
+</section>
+
+<h2 ngClass="last-patients">Les derniers patients</h2>
+<table mat-table [dataSource]="patients" class="mat-elevation-z8">
+    <!-- LastName Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Nom</th>
+      <td ngClass="text-uppercase" mat-cell *matCellDef="let patient">{{patient.lastName}}</td>
+    </ng-container>
+  
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>Prénom</th>
+      <td ngClass="text-capitalize" mat-cell *matCellDef="let patient">{{patient.firstName}}</td>
+    </ng-container>
+  
+    <!-- LastIncome Column -->
+    <ng-container matColumnDef="lastIncome">
+      <th mat-header-cell *matHeaderCellDef>Dernière visite</th>
+      <td mat-cell *matCellDef="let patient">{{patient.lastIncome | date:'dd/MM/Y' }}</td>
+    </ng-container>
+  
+    <!-- LastSubject Column -->
+    <ng-container matColumnDef="lastSubject">
+      <th mat-header-cell *matHeaderCellDef>Motif</th>
+      <td ngClass="text-capitalize" mat-cell *matCellDef="let patient">{{patient.lastSubject}}</td>
+    </ng-container>
+  
+    <tr ngClass="thead-tr" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr ngClass="tbody-tr" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showPatient(row['id'])"></tr>
+</table>
